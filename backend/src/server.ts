@@ -2,6 +2,8 @@ import "dotenv/config";
 import express, { type Request, type Response } from "express";
 import cors from "cors";
 import { connectDB } from "./config/db";
+import { serve } from "inngest/express";
+import { functions, inngest } from "./inngest";
 
 const app = express();
 
@@ -11,6 +13,9 @@ app.use(
         credentials: true,
     }),
 );
+
+// Set up the "/api/inngest" (recommended) routes with the serve handler
+app.use("/api/inngest", serve({ client: inngest, functions }));
 
 // Health Check Route
 app.get("/", (req: Request, res: Response) => {
