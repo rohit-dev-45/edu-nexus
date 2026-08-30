@@ -567,7 +567,7 @@ export const handleExamSubmission = inngest.createFunction(
          * source of truth.
          */
         concurrency: {
-            limit: 10,
+            limit: 5,
         },
     },
 
